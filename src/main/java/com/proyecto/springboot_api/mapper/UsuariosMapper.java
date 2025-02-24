@@ -1,0 +1,58 @@
+package com.proyecto.springboot_api.mapper;
+
+import java.util.List;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.factory.Mappers;
+
+import com.proyecto.springboot_api.models.Usuario;
+import com.proyecto.springboot_api.models.dtos.UsuarioDto;
+
+
+import com.proyecto.springboot_api.models.Usuario;
+import com.proyecto.springboot_api.models.dtos.UsuarioDto;
+import com.proyecto.springboot_api.models.dtos.UsuarioDto.Nombre;
+
+import lombok.Data;
+
+import com.proyecto.springboot_api.models.dtos.UsuarioDto.Locacion;
+import com.proyecto.springboot_api.models.dtos.UsuarioDto.FechaNacimiento;
+import java.time.LocalDate;
+
+
+
+@Mapper(componentModel = "spring")
+public interface UsuariosMapper {
+
+    UsuariosMapper INSTANCE = Mappers.getMapper(UsuariosMapper.class);
+
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "fechaNacimiento", source = "fechaNacimiento.fecha")
+    @Mapping(target = "nombre", source = "nombre.nombre")
+    @Mapping(target = "apellido", source = "nombre.apellido")
+    @Mapping(target = "ciudad", source = "locacion.ciudad")
+    @Mapping(target = "pais", source = "locacion.pais")
+    @Mapping(target = "coordenadas", source = "locacion.coordenadas")
+    Usuario usuarioDtoToUsuario(UsuarioDto usuarioDto);
+
+    // Nuevo método para listas
+    List<Usuario> usuariosDtoToUsuarios(List<UsuarioDto> usuariosDto);
+
+    default UsuarioDto.FechaNacimiento mapFechaNacimiento(LocalDate value) {
+        if (value == null) {
+            return null;
+        }
+        UsuarioDto.FechaNacimiento fechaNacimiento = new UsuarioDto.FechaNacimiento();
+        fechaNacimiento.setFecha(value);
+        return fechaNacimiento;
+    }
+
+    default UsuarioDto.Nombre mapNombre(String value) {
+        if (value == null) {
+            return null;
+        }
+        UsuarioDto.Nombre nombre = new UsuarioDto.Nombre();
+        nombre.setNombre(value);
+        return nombre;
+    }
+}

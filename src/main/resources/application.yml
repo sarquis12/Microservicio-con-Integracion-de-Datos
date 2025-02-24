@@ -1,0 +1,36 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1
+    driverClassName: org.h2.Driver
+    username: sa
+    password: YOUR_PASSWORD
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    database-platform: org.hibernate.dialect.H2Dialect
+    properties:
+      hibernate:
+        format_sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+
+server:
+  port: 8081
+  servlet:
+    context-path: /proyecto
+
+springdoc:
+  model-converters:
+    local-date-example: "01-01-2002"
+  api-docs:
+    resolve-schema-properties: false
+
+
+logging:
+  level:
+    org.h2: DEBUG
+    
