@@ -4,33 +4,51 @@ package com.proyecto.springboot_api.services.Impl;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 
 import com.proyecto.springboot_api.producers.UsuariosProducers;
 import com.proyecto.springboot_api.repositories.UsuariosRepository;
+import com.proyecto.springboot_api.repositories.WeatherRepository;
+import com.proyecto.springboot_api.client.ClientRetrofit;
 import com.proyecto.springboot_api.mapper.UsuariosMapper;
+import com.proyecto.springboot_api.mapper.WeatherMapper;
 import com.proyecto.springboot_api.models.dtos.UsuarioDto;
-import com.proyecto.springboot_api.models.Usuario;
+import com.proyecto.springboot_api.models.entity.ApiWeather;
+import com.proyecto.springboot_api.models.entity.Usuario;
+import com.proyecto.springboot_api.models.responses.ApiWeatherResponse;
 import com.proyecto.springboot_api.services.UsuariosServices;
 
+
 import jakarta.annotation.PostConstruct;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import retrofit2.Response;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Component
+@Service
+@Slf4j
+@RequiredArgsConstructor
 public class UsuariosServicesImpl implements UsuariosServices {
 
     private static final Logger logger = LoggerFactory.getLogger(UsuariosServicesImpl.class);
     
-    UsuariosMapper usuariosMapper = UsuariosMapper.INSTANCE;
+   
+    private final UsuariosMapper usuariosMapper;
+    private final WeatherMapper weatherMapper;
 
-    @Autowired
-    UsuariosRepository usuariosRepository;
+  
+    private final ClientRetrofit clientRetrofit;
 
-    @Autowired
-    UsuariosProducers usuariosProducers;
+   
+    private final UsuariosRepository usuariosRepository;
+    private final WeatherRepository weatherRepository;
+
+ 
+    private final UsuariosProducers usuariosProducers;
 
     @Override
     public List<UsuarioDto> GenerarUsuarios(Integer cantidad) throws Exception {
@@ -39,7 +57,26 @@ public class UsuariosServicesImpl implements UsuariosServices {
             throw new Exception("No se pudieron obtener los usuarios");
         }
 
-        
+        for (UsuarioDto usuario : usuarios) {
+            try {
+                logger.info("Llamando a api clima: ");
+                Response<ApiWeatherResponse> response = clientRetrofit.getWeather(usuario.getLocacion().getCoordenadas().getLatitud(), usuario.getLocacion().getCoordenadas().getLongitud(),"true").execute();
+                if (response.isSuccessful()) {
+                    ApiWeatherResponse weatherData = response.body();
+                    logger.info("Respuesta obtenida de la peticion: " + weatherData);
+                    ApiWeather apiWeather = weatherMapper.toEntity(weatherData);
+                    try {
+                        weatherRepository.save(apiWeather);
+                    } catch (Exception e) {
+                        logger.error("Error al guardar el clima", e);
+                    }
+                } else {
+                    logger.error("Error en la respuesta: " + response.code());
+                }
+            } catch (Exception e) {
+                logger.error("Error al llamar a la api de clima", e);
+            }
+        } 
 
         try {
             usuariosRepository.saveAll(usuariosMapper.usuariosDtoToUsuarios(usuarios));

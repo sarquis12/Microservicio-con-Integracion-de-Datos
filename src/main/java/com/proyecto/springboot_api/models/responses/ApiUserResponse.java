@@ -1,8 +1,9 @@
-package com.proyecto.springboot_api.models;
+package com.proyecto.springboot_api.models.responses;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import com.proyecto.springboot_api.models.dtos.UsuarioDto;
+
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;

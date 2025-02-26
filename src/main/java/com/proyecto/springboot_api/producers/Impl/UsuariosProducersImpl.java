@@ -8,9 +8,9 @@ import org.apache.camel.Exchange;
 
 import org.springframework.stereotype.Component;
 import com.proyecto.springboot_api.models.dtos.UsuarioDto;
+import com.proyecto.springboot_api.models.responses.ApiUserResponse;
 import com.proyecto.springboot_api.producers.UsuariosProducers;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.proyecto.springboot_api.models.ApiUserResponse;
 
 import lombok.RequiredArgsConstructor;
 

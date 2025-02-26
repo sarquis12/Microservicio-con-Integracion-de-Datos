@@ -1,4 +1,4 @@
-package com.proyecto.springboot_api.models;
+package com.proyecto.springboot_api.models.entity;
 
 import com.proyecto.springboot_api.embeddables.Coordenadas;
 import com.proyecto.springboot_api.embeddables.Login;
@@ -19,6 +19,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
