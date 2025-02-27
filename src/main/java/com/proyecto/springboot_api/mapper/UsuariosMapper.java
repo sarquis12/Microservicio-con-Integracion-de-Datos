@@ -28,6 +28,18 @@ public interface UsuariosMapper {
 
     List<Usuario> usuariosDtoToUsuarios(List<UsuarioDto> usuariosDto);
 
+
+    // Nueva conversión de Usuario a UsuarioDto
+    @Mapping(source = "fechaNacimiento", target = "fechaNacimiento.fecha")
+    @Mapping(source = "nombre", target = "nombre.nombre")
+    @Mapping(source = "apellido", target = "nombre.apellido")
+    @Mapping(source = "ciudad", target = "locacion.ciudad")
+    @Mapping(source = "pais", target = "locacion.pais")
+    @Mapping(source = "coordenadas", target = "locacion.coordenadas")
+    UsuarioDto usuarioToUsuarioDto(Usuario usuario);
+    List<UsuarioDto> usuariosToUsuariosDto(List<Usuario> usuarios);
+
+
     default UsuarioDto.FechaNacimiento mapFechaNacimiento(LocalDate value) {
         if (value == null) {
             return null;
@@ -45,4 +57,9 @@ public interface UsuariosMapper {
         nombre.setNombre(value);
         return nombre;
     }
+
+
+
+
+
 }

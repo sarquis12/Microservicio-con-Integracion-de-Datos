@@ -41,4 +41,16 @@ public class UsuariosControllers {
         return usuariosServices.GenerarUsuarios(cantidad);
     }
 
+    @Operation(summary = "Buscar usuario por id", description = "Busca un usuario por id")
+    @GetMapping("/BuscarUsuarioPorId/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public UsuarioDto BuscarUsuarioPorId(@PathVariable(name = "id" ) @Parameter(name = "id", description = "ID de la persona a buscar")
+    final Long id) throws Exception {
+        log.info("Buscando usuario: ", id);
+        return usuariosServices.GetUsuario(id);
+    }
+
+
+
+
 }   

@@ -7,4 +7,6 @@ import com.proyecto.springboot_api.models.dtos.UsuarioDto;
 public interface UsuariosServices {
 
     List<UsuarioDto> GenerarUsuarios(Integer cantidad) throws Exception ;
+
+    UsuarioDto GetUsuario(Long id) throws Exception;
 }

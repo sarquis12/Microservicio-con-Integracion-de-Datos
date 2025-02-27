@@ -101,4 +101,15 @@ public class UsuariosServicesImpl implements UsuariosServices {
         return usuarios;
 
     }
+
+    @Override
+    public UsuarioDto GetUsuario(Long id) throws Exception {
+        
+        Usuario usuario = usuariosRepository.findById(id).orElse(null);
+        
+        if (usuario == null) {
+            throw new Exception("No se encontro el usuario");
+        }
+        return usuariosMapper.usuarioToUsuarioDto(usuario);
+    }
 }
