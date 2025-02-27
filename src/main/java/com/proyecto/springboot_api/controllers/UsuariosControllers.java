@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.proyecto.springboot_api.models.dtos.UsuarioDto;
+import com.proyecto.springboot_api.models.entity.Usuario;
+
 import com.proyecto.springboot_api.services.UsuariosServices;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -49,6 +52,15 @@ public class UsuariosControllers {
         log.info("Buscando usuario: ", id);
         return usuariosServices.GetUsuario(id);
     }
+
+    @Operation(summary = "Actualizar usuario", description = "Actualiza un usuario")
+    @PostMapping("/ActualizarUsuario")
+    @ResponseStatus(HttpStatus.OK)
+    public Usuario ActualizarUsuario(@RequestBody @Parameter(name = "usuario", description = "Objeto persona") final Usuario usuario) throws Exception {
+        log.info("Actualizando usuario: ", usuario);
+        return usuariosServices.UpdateUsuario(usuario);
+    }
+
 
 
 

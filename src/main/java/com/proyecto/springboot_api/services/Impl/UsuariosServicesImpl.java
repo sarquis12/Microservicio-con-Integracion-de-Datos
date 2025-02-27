@@ -112,4 +112,14 @@ public class UsuariosServicesImpl implements UsuariosServices {
         }
         return usuariosMapper.usuarioToUsuarioDto(usuario);
     }
+
+
+    @Override
+    public Usuario UpdateUsuario(Usuario usuario) throws Exception {
+        
+        Usuario usuarioActualizado = usuariosRepository.save(usuario);
+                
+        return usuarioActualizado;
+    }
+
 }
