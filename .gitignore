@@ -83,3 +83,5 @@ Thumbs.db
 /bin
 /bin/generated-sources
 
+
+!gradle/wrapper/gradle-wrapper.jar
