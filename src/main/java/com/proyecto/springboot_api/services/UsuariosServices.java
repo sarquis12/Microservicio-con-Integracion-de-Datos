@@ -9,9 +9,13 @@ public interface UsuariosServices {
 
     List<UsuarioDto> GenerarUsuarios(Integer cantidad) throws Exception ;
 
+    Usuario InsertUsuario(Usuario usuario) throws Exception;
+
     UsuarioDto GetUsuario(Long id) throws Exception;
 
     Usuario UpdateUsuario(Usuario usuario) throws Exception;
+
+    Void UpdateCorreo(Long id, String correo) throws Exception;
 
 
 }

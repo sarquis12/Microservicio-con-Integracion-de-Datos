@@ -102,6 +102,18 @@ public class UsuariosServicesImpl implements UsuariosServices {
 
     }
 
+
+    @Override
+    public Usuario InsertUsuario(Usuario usuario) throws Exception {
+
+        usuario.setId(null);
+        
+        Usuario usuarioGuardado = usuariosRepository.save(usuario);
+        
+        return usuarioGuardado;
+    }
+
+
     @Override
     public UsuarioDto GetUsuario(Long id) throws Exception {
         
@@ -120,6 +132,22 @@ public class UsuariosServicesImpl implements UsuariosServices {
         Usuario usuarioActualizado = usuariosRepository.save(usuario);
                 
         return usuarioActualizado;
+    }
+
+    @Override 
+    public Void UpdateCorreo(Long id, String correo) throws Exception {
+        
+        Usuario usuario = usuariosRepository.findById(id).orElse(null);
+        
+        if (usuario == null) {
+            throw new Exception("No se encontro el usuario");
+        }
+        
+        usuario.setEmail(correo);
+        
+        usuariosRepository.save(usuario);
+        
+        return null;
     }
 
 }
