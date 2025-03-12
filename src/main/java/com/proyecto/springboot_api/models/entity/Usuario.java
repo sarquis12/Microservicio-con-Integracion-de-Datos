@@ -3,9 +3,6 @@ package com.proyecto.springboot_api.models.entity;
 import com.proyecto.springboot_api.embeddables.Coordenadas;
 import com.proyecto.springboot_api.embeddables.Login;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

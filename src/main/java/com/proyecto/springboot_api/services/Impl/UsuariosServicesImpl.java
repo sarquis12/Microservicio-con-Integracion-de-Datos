@@ -3,9 +3,8 @@ package com.proyecto.springboot_api.services.Impl;
 
 import java.util.List;
 
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.dao.DataIntegrityViolationException;
 
 import com.proyecto.springboot_api.producers.UsuariosProducers;
@@ -21,7 +20,7 @@ import com.proyecto.springboot_api.models.responses.ApiWeatherResponse;
 import com.proyecto.springboot_api.services.UsuariosServices;
 
 
-import jakarta.annotation.PostConstruct;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import retrofit2.Response;
