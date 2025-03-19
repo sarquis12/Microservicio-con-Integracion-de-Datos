@@ -78,7 +78,11 @@ public class UsuariosServicesImpl implements UsuariosServices {
         } 
 
         try {
-            usuariosRepository.saveAll(usuariosMapper.usuariosDtoToUsuarios(usuarios));
+            List<Usuario> usuariosEntity = usuariosMapper.usuariosDtoToUsuarios(usuarios);
+            for (Usuario usuario : usuariosEntity) {
+                usuario.setMamualFlag(false);
+            }
+            usuariosRepository.saveAll(usuariosEntity);
         } catch (DataIntegrityViolationException e) {
             logger.error("Error de integridad de datos al guardar usuarios", e);
             throw new Exception("No se pudieron guardar los usuarios debido a un error de integridad de datos", e);
@@ -106,7 +110,7 @@ public class UsuariosServicesImpl implements UsuariosServices {
     public Usuario InsertUsuario(Usuario usuario) throws Exception {
 
         usuario.setId(null);
-        
+        usuario.setMamualFlag(true);
         Usuario usuarioGuardado = usuariosRepository.save(usuario);
         
         return usuarioGuardado;

@@ -1,0 +1,3 @@
+ALTER TABLE usuarios
+ADD manual_flag BIT NOT NULL DEFAULT 0;
+GO

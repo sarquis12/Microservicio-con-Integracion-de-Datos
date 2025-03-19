@@ -26,6 +26,7 @@ public interface UsuariosMapper {
     @Mapping(target = "coordenadas", source = "locacion.coordenadas")
     Usuario usuarioDtoToUsuario(UsuarioDto usuarioDto);
 
+   
     List<Usuario> usuariosDtoToUsuarios(List<UsuarioDto> usuariosDto);
 
 
@@ -57,9 +58,5 @@ public interface UsuariosMapper {
         nombre.setNombre(value);
         return nombre;
     }
-
-
-
-
 
 }

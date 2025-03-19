@@ -1,22 +1,21 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1
-    driverClassName: org.h2.Driver
+    url: jdbc:sqlserver://localhost:1433;databaseName=ProyectoSpringV1;trustServerCertificate=true;encrypt=true
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
     username: sa
     password: YOUR_PASSWORD
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
     show-sql: true
-    database-platform: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.SQLServerDialect
     properties:
       hibernate:
         format_sql: true
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
-
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
 
 server:
   port: 8081
@@ -30,7 +29,5 @@ springdoc:
     resolve-schema-properties: false
 
 
-logging:
-  level:
-    org.h2: DEBUG
+
     
