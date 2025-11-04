@@ -102,11 +102,7 @@ Una vez iniciada la aplicación, accede a la documentación Swagger en:
 http://localhost:8081/proyecto/swagger-ui.html
 ```
 
-## 🧪 Testing
-
-```bash
-./gradlew test
-```
+`
 
 ## 📁 Estructura del Proyecto
 
@@ -131,43 +127,4 @@ springboot-api/
 └── README.md
 ```
 
-## 🔒 Seguridad
 
-- **No commitear credenciales**: El archivo `application.yml` está en `.gitignore`
-- **Variables de entorno**: Usar variables de entorno en producción
-- **HTTPS**: Configurar certificados SSL en producción
-- **Autenticación**: Implementar Spring Security para endpoints sensibles
-
-## 🐛 Solución de Problemas
-
-### Error de conexión a SQL Server
-
-Verifica que:
-- SQL Server esté corriendo
-- El puerto 1433 esté abierto
-- Las credenciales sean correctas
-- La base de datos exista
-
-### Error de migraciones Flyway
-
-```bash
-# Limpiar y reiniciar migraciones (CUIDADO: borra datos)
-./gradlew flywayClean flywayMigrate
-```
-
-## 📄 Licencia
-
-Este proyecto es de uso educativo/personal.
-
-## 👤 Autor
-
-Elias
-
-## 🤝 Contribuciones
-
-Las contribuciones son bienvenidas. Por favor:
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
