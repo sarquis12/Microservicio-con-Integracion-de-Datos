@@ -79,6 +79,18 @@ Thumbs.db
 *.swp
 *~.nib
 
+# Spring Configuration Files (SENSITIVE)
+application.yml
+application.properties
+application-*.yml
+application-*.properties
+!application.yml.example
+!application.properties.example
+
+# Environment variables
+.env
+.env.local
+.env.*.local
 
 /bin
 /bin/generated-sources

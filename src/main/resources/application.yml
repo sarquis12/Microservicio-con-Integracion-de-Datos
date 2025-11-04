@@ -1,9 +1,9 @@
 spring:
   datasource:
-    url: jdbc:sqlserver://YOUR_SERVER_NAME:1433;databaseName=YOUR_DATABASE_NAME;trustServerCertificate=true;encrypt=true
+    url: ${DB_URL:jdbc:sqlserver://localhost:1433;databaseName=ProyectoSpringV1;trustServerCertificate=true;encrypt=true}
     driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    username: YOUR_USERNAME
-    password: YOUR_PASSWORD
+    username: ${DB_USERNAME:sa}
+    password: ${DB_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: none

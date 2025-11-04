@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    url: jdbc:sqlserver://YOUR_SERVER_NAME:1433;databaseName=YOUR_DATABASE_NAME;trustServerCertificate=true;encrypt=true
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    username: YOUR_DB_USERNAME
+    password: YOUR_DB_PASSWORD
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    database-platform: org.hibernate.dialect.SQLServerDialect
+    properties:
+      hibernate:
+        format_sql: true
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
+server:
+  port: 8081
+  servlet:
+    context-path: /proyecto
+
+springdoc:
+  model-converters:
+    local-date-example: "01-01-2002"
+  api-docs:
+    resolve-schema-properties: false
+
+
