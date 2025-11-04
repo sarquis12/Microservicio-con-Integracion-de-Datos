@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:sqlserver://localhost:1433;databaseName=ProyectoSpringV1;trustServerCertificate=true;encrypt=true
+    url: jdbc:sqlserver://YOUR_SERVER_NAME:1433;databaseName=YOUR_DATABASE_NAME;trustServerCertificate=true;encrypt=true
     driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    username: sa
+    username: YOUR_USERNAME
     password: YOUR_PASSWORD
   jpa:
     hibernate:
@@ -27,7 +27,3 @@ springdoc:
     local-date-example: "01-01-2002"
   api-docs:
     resolve-schema-properties: false
-
-
-
-    
